@@ -3,14 +3,14 @@
   <Role name="ColdStorage.EventProcessor.WorkerRole">
     <Instances count="1" />
     <ConfigurationSettings>
-      <Setting name="Coldstorage.ConsumerGroupName" value="ColdStorage" />
-      <Setting name="Coldstorage.CheckpointStorageAccount" value="DefaultEndpointsProtocol=https;AccountName=[YourStorageAccount];AccountKey=[YourAccountKey]" />
-      <Setting name="Coldstorage.EventHubConnectionString" value="Endpoint=sb://[YourServiceNamespace].servicebus.windows.net/;SharedAccessKeyName=[YourAccessKeyName];SharedAccessKey=[YourAccessKey];TransportType=Amqp" />
-      <Setting name="Coldstorage.EventHubName" value="[YourEventHubName]" />
+      <Setting name="Coldstorage.ConsumerGroupName" value="cg-blobs" />
+      <Setting name="Coldstorage.CheckpointStorageAccount" value="DefaultEndpointsProtocol=https;AccountName=iotapp2sa;AccountKey=bPCWYY/4aczB87qPOzDDf0HVtl7G6a0nhGM/TTR4bq4KurMGOqOnaw69AaBduDTz0LF5IgYhql79aZwQzxhTIg==" />
+      <Setting name="Coldstorage.EventHubConnectionString" value="Endpoint=sb://iotapp2sb.servicebus.windows.net/;SharedAccessKeyName=SendReceive;SharedAccessKey=b8dC0Rl+BR8Fns1pjgGRE4KsdauM4Ai2W76R0gDP1Sw=;TransportType=Amqp" />
+      <Setting name="Coldstorage.EventHubName" value="eventhub-iot" />
       <Setting name="Coldstorage.MaxBatchSize" value="100" />
       <Setting name="Coldstorage.PreFetchCount" value="500" />
       <Setting name="Coldstorage.ReceiveTimeout" value="0.00:01:00" />
-      <Setting name="Coldstorage.BlobWriterStorageAccount" value="DefaultEndpointsProtocol=https;AccountName=[YourStorageAccount];AccountKey=[YourAccountKey]" />
+      <Setting name="Coldstorage.BlobWriterStorageAccount" value="DefaultEndpointsProtocol=https;AccountName=iotapp2sa;AccountKey=bPCWYY/4aczB87qPOzDDf0HVtl7G6a0nhGM/TTR4bq4KurMGOqOnaw69AaBduDTz0LF5IgYhql79aZwQzxhTIg==" />
       <Setting name="Coldstorage.RollSizeForBlobWriterMb" value="2048" />
       <Setting name="Coldstorage.ContainerName" value="blobs-processor" />
       <Setting name="Coldstorage.BlobPrefix" value="fabrikam" />

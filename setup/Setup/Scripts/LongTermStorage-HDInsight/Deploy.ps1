@@ -12,7 +12,7 @@ Param
     [ValidateNotNullOrEmpty()][Parameter (Mandatory = $False)][string]$ClusterName =$ApplicationName,
     [ValidateNotNullOrEmpty()][Parameter (Mandatory = $False)][string]$ClusterStorageType = "Standard_LRS",
     [ValidateNotNullOrEmpty()][Parameter (Mandatory = $False)][string]$ClusterLoginUserName = "admin",
-    [ValidateNotNullOrEmpty()][Parameter (Mandatory = $True)][securestring]$ClusterLoginPassword,
+    [ValidateNotNullOrEmpty()][Parameter (Mandatory = $True)][securestring]$ClusterLoginPassword = (ConvertTo-SecureString -AsPlainText "Winter2015$" -Force),
     [ValidateNotNullOrEmpty()][Parameter (Mandatory = $False)][int]$ClusterWorkerNodeCount = 2,
     [ValidateNotNullOrEmpty()][Parameter (Mandatory = $False)][string]$ResourceGroupName = "IoTJourney",
     [ValidateNotNullOrEmpty()][Parameter (Mandatory = $False)][string]$DeploymentName = "LongTermStorage-HDInsight",
@@ -53,7 +53,7 @@ PROCESS
     
         New-AzureResourceGroupIfNotExists -ResourceGroupName $ResourceGroupName -Location $Location
     
-        $info = New-AzureResourceGroupDeployment -ResourceGroupName $ResourceGroupName `
+        $info = New-AzureRmResourceGroupDeployment -ResourceGroupName $ResourceGroupName `
                                                  -Name $DeploymentName `
                                                  -TemplateFile $templatePath `
                                                  -clusterName $ClusterName `

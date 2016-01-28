@@ -64,16 +64,19 @@ PROCESS
     
         New-AzureResourceGroupIfNotExists -ResourceGroupName $ResourceGroupName -Location $Location
     
-        $deployInfo = New-AzureResourceGroupDeployment -ResourceGroupName $ResourceGroupName `
+		$templateParameterObject = @{}
+		$templateParameterObject.Add("serviceBusNamespaceName", $ServiceBusNamespace)
+		$templateParameterObject.Add("eventHubName", $EventHubName)
+		$templateParameterObject.Add("consumerGroupName", $ConsumerGroupName)
+		$templateParameterObject.Add("storageAccountName", $StorageAccountName)
+		$templateParameterObject.Add("containerName", $ContainerName)
+		$templateParameterObject.Add("eventHubPrimaryKey", $primaryKey)
+		$templateParameterObject.Add("eventHubSecondaryKey", $secondaryKey)
+
+        $deployInfo = New-AzureRmResourceGroupDeployment -ResourceGroupName $ResourceGroupName `
                                          -Name $DeploymentName `
                                          -TemplateFile $templatePath `
-                                         -serviceBusNamespaceName $ServiceBusNamespace `
-                                         -eventHubName $EventHubName `
-                                         -consumerGroupName $ConsumerGroupName `
-                                         -storageAccountNameFromTemplate $StorageAccountName `
-                                         -containerName $ContainerName `
-                                         -eventHubPrimaryKey $primaryKey `
-                                         -eventHubSecondaryKey $secondaryKey
+                                         -TemplateParameterObject $templateParameterObject
 
         #Create the container.
         $context = New-AzureStorageContext -StorageAccountName $StorageAccountName -StorageAccountKey $deployInfo.Outputs["storageAccountPrimaryKey"].Value

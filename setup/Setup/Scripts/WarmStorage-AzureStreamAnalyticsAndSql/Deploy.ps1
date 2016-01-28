@@ -13,7 +13,7 @@ Param
     [ValidateNotNullOrEmpty()][Parameter (Mandatory = $False)][string]$SqlServerName = "$($ApplicationName)sql",
     [ValidateNotNullOrEmpty()][Parameter (Mandatory = $False)][string]$SqlServerAdminLogin = "dbuser",
     [ValidateNotNullOrEmpty()][Parameter (Mandatory = $False)][string]$SqlDatabaseName = "fabrikamdb",
-    [ValidateNotNullOrEmpty()][Parameter (Mandatory = $True)][string]$SqlServerAdminLoginPassword,
+    [ValidateNotNullOrEmpty()][Parameter (Mandatory = $True)][string]$SqlServerAdminLoginPassword = "P@55word",
     [ValidateNotNullOrEmpty()][Parameter (Mandatory = $False)][string]$ResourceGroupName = "IoTJourney",
     [ValidateNotNullOrEmpty()][Parameter (Mandatory = $False)][string]$DeploymentName = "WarmStorage-AzureStreamAnalyticsAndSql",
     [ValidateNotNullOrEmpty()][Parameter (Mandatory = $False)][string]$Location = "Central US",
@@ -71,11 +71,11 @@ PROCESS
         
         $referenceDataContainerName = "warm-asa-refdata"
 
-        $deployInfo = New-AzureResourceGroupDeployment -ResourceGroupName $ResourceGroupName `
+        $deployInfo = New-AzureRmResourceGroupDeployment -ResourceGroupName $ResourceGroupName `
                                                        -Name $DeploymentName `
                                                        -TemplateFile $templatePath `
                                                        -asaJobName $streamAnalyticsJobName `
-                                                       -storageAccountNameFromTemplate $StorageAccountName `
+                                                       -storageAccountName $StorageAccountName `
                                                        -serviceBusNamespaceName $ServiceBusNamespaceName `
                                                        -eventHubName $EventHubName `
                                                        -consumerGroupName $ConsumerGroupName `

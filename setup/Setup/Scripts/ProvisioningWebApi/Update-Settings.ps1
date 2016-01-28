@@ -31,7 +31,7 @@ PROCESS
 
     $deploymentInfo = $null
     Invoke-InAzureResourceManagerMode ({
-        $deploymentInfo = Get-AzureResourceGroupDeployment -ResourceGroupName $ResourceGroupName  -Name $DeploymentName
+        $deploymentInfo = Get-AzureRmResourceGroupDeployment -ResourceGroupName $ResourceGroupName  -Name $DeploymentName
     })
 
     $settings = @{

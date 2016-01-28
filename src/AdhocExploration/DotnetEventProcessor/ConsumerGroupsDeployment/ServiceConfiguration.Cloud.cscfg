@@ -1,12 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <ServiceConfiguration serviceName="ConsumerGroupsDeployment" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceConfiguration" osFamily="4" osVersion="*" schemaVersion="2015-04.2.6">
   <Role name="WarmStorage.EventProcessor.WorkerRole">
     <Instances count="1" />
     <ConfigurationSettings>
-      <Setting name="Warmstorage.EventHubConnectionString" value="Endpoint=sb://[YourServiceNamespace].servicebus.windows.net/;SharedAccessKeyName=[YourAccessKeyName];SharedAccessKey=[YourAccessKey];TransportType=Amqp" />
-      <Setting name="Warmstorage.EventHubName" value="[YourEventHubName]" />
-      <Setting name="Warmstorage.CheckpointStorageAccount" value="DefaultEndpointsProtocol=https;AccountName=[YourStorageAccount];AccountKey=[YourAccountKey]" />
-      <Setting name="Warmstorage.ConsumerGroupName" value="cg-elastic" />
+      <Setting name="Warmstorage.EventHubConnectionString" value="Endpoint=sb://iotapp6sb.servicebus.windows.net/;SharedAccessKeyName=SendReceive;SharedAccessKey=5RQZX6yhHeZzXUOPvYX2fsLEjKlWo49onfaX0edUKqI=;TransportType=Amqp" />
+      <Setting name="Warmstorage.EventHubName" value="eventhub-iot" />
+      <Setting name="Warmstorage.CheckpointStorageAccount" value="DefaultEndpointsProtocol=https;AccountName=iotapp6sa;AccountKey=Cv4wQYDOHhx3W5qmRPEx/21t857vOdfCFOwWe4XMgUm6Sfkael07OVjIvsboE7zeWU4KFleY2f/NZfGXqEnnUg==" />
+      <Setting name="Warmstorage.ConsumerGroupName" value="cg-elasticsearch" />
       <Setting name="Warmstorage.MaxBatchSize" value="500" />
       <Setting name="Warmstorage.PreFetchCount" value="500" />
       <Setting name="Warmstorage.ReceiveTimeout" value="0.00:01:00" />

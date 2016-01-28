@@ -65,17 +65,20 @@ PROCESS
     
         New-AzureResourceGroupIfNotExists -ResourceGroupName $ResourceGroupName -Location $Location
         
-        $deploymentInfo = New-AzureResourceGroupDeployment -ResourceGroupName $ResourceGroupName `
+        $templateParameterObject = @{}
+        $templateParameterObject.Add("asaJobName", $streamAnalyticsJobName)
+        $templateParameterObject.Add("serviceBusNamespaceName", $ServiceBusNamespace)
+        $templateParameterObject.Add("eventHubName", $EventHubName)
+        $templateParameterObject.Add("consumerGroupName", $ConsumerGroupName)
+        $templateParameterObject.Add("storageAccountName", $StorageAccountName)
+        $templateParameterObject.Add("blobContainerName", $BlobContainerName)
+        $templateParameterObject.Add("eventHubPrimaryKey", $primaryKey)
+        $templateParameterObject.Add("eventHubSecondaryKey", $secondaryKey)
+
+        $deploymentInfo = New-AzureRmResourceGroupDeployment -ResourceGroupName $ResourceGroupName `
                                          -Name $DeploymentName `
                                          -TemplateFile $templatePath `
-                                         -asaJobName $streamAnalyticsJobName `
-                                         -serviceBusNamespaceName $ServiceBusNamespace `
-                                         -eventHubName $EventHubName `
-                                         -consumerGroupName $ConsumerGroupName `
-                                         -storageAccountNameFromTemplate $StorageAccountName `
-                                         -blobContainerName $BlobContainerName `
-                                         -eventHubPrimaryKey $primaryKey `
-                                         -eventHubSecondaryKey $secondaryKey
+                                         -TemplateParameterObject $templateParameterObject
 
         #Create the container.
         $context = New-AzureStorageContext -StorageAccountName $StorageAccountName -StorageAccountKey $deploymentInfo.Outputs["storageAccountPrimaryKey"].Value

@@ -60,12 +60,12 @@ PROCESS
     
         New-AzureResourceGroupIfNotExists -ResourceGroupName $ResourceGroupName -Location $Location
     
-        $deployInfo = New-AzureResourceGroupDeployment -ResourceGroupName $ResourceGroupName `
+        $deployInfo = New-AzureRmResourceGroupDeployment -ResourceGroupName $ResourceGroupName `
                                          -Name $DeploymentName `
                                          -TemplateFile $templatePath `
                                          -serviceBusNamespaceName $ServiceBusNamespace `
                                          -eventHubName $EventHubName `
-                                         -storageAccountNameFromTemplate $StorageAccountName `
+                                         -storageAccountName $StorageAccountName `
                                          -eventHubPrimaryKey $primaryKey `
                                          -eventHubSecondaryKey $secondaryKey
     })

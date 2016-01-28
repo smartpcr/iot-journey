@@ -13,13 +13,13 @@ function Invoke-InAzureResourceManagerMode
     {
         try
         {
-            Switch-AzureMode -Name AzureResourceManager -WarningAction SilentlyContinue
+            #Switch-AzureMode -Name AzureResourceManager -WarningAction SilentlyContinue
 
             . $ScriptBlock
         }
         finally
         {
-            Switch-AzureMode -Name AzureServiceManagement -WarningAction SilentlyContinue
+            #Switch-AzureMode -Name AzureServiceManagement -WarningAction SilentlyContinue
         }
     }
 }
@@ -33,12 +33,12 @@ function New-AzureResourceGroupIfNotExists
     )
     PROCESS
     {
-        if(!(Get-AzureResourceGroup -Name $ResourceGroupName -EA SilentlyContinue))
+        if(!(Get-AzureRmResourceGroup -Name $ResourceGroupName -EA SilentlyContinue))
         {
             Write-Verbose "The [$ResourceGroupName] ResourceGroup does not exist." 
             Write-Verbose "Creating the [$ResourceGroupName] ResourceGroup..." 
             
-            New-AzureResourceGroup -Name $ResourceGroupName -Location $Location
+            New-AzureRmResourceGroup -Name $ResourceGroupName -Location $Location
 
             Write-Verbose "The [$ResourceGroupName] Resource Group in the [$Location] region has been successfully created."
         }

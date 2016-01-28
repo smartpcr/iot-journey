@@ -15,7 +15,7 @@ function global:Load-Module
     )
     if (Get-Module -Name $ModuleName -Verbose:$False -EA Stop)
     {
-        Remove-Module -Name $ModuleName -Verbose:$False -EA Stop
+        Remove-Module -Name $ModuleName -Force -Verbose:$False -EA Stop
     }
     $QualifiedModuleName = $ModuleLocation + "\" + $ModuleName
     $Ignore = Import-Module -Name $QualifiedModuleName -PassThru -Verbose:$False -EA Stop
