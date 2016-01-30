@@ -201,9 +201,9 @@ FakesAssemblies/
 # User-specific configuration that should not be place under source control
 *.azurePubXml
 
-*-local.config
-*.ConsoleHost.config
-settings.config
+#*-local.config
+#*.ConsoleHost.config
+#settings.config
 
 #Java
 
